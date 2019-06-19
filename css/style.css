@@ -1,0 +1,13 @@
+#login-form {
+    background-color: aqua;
+}
+
+#login-button {
+    background-color: green;
+    color: blanchedalmond;
+}
+
+#main-page {
+    background-color: rebeccapurple;
+    display: none;
+}
