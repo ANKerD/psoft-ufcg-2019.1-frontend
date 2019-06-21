@@ -1,16 +1,22 @@
-import { LoginService } from "./services/login";
+import { LoginService } from "./services/login.js";
 
-$loginButton = document.querySelector('#login-button'); 
-$emailInput = document.querySelector('#email');
-$passwordInput = document.querySelector('#password');
-$mainPage = document.querySelector('#main-page');
+let $loginButton = document.querySelector('#login-button');
+let $signupButton = document.querySelector('#signup-button'); 
+let $emailInput = document.querySelector('#email');
+let $passwordInput = document.querySelector('#password');
+let $mainPage = document.querySelector('#main-page');
+let loginService = new LoginService();
 
-const authenticate = (event) => {
-    console.log('Hello world', event);
+$loginButton.onclick = (event) => {
     event.stopPropagation();
     event.preventDefault();
-    // let email = $loginForm
-    // LoginService.authenticate
-};
+    loginService.authenticate(email.value, password.value).then((response) => {
+        if(response.ok) {
+            console.log(response);
+        } else {
+            console.log('Network response was not ok.');
+        }
+    })
+}
 
-$loginButton.onClick = authenticate;
+//LoginService.authenticate;
