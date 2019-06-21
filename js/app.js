@@ -7,12 +7,13 @@ let $passwordInput = document.querySelector('#password');
 let $mainPage = document.querySelector('#main-page');
 let loginService = new LoginService();
 
-$loginButton.onclick = (event) => {
+$loginButton.onclick = async (event) => {
     event.stopPropagation();
     event.preventDefault();
-    loginService.authenticate(email.value, password.value).then((response) => {
+    loginService.authenticate(email.value, password.value).then( async (response) => {
         if(response.ok) {
-            console.log(response);
+            let token = (await response.json()).token;
+            console.log(token);
         } else {
             console.log('Network response was not ok.');
         }
