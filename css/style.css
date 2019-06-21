@@ -1,13 +1,105 @@
+body {
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+    display: grid;
+    grid-template-rows: 50px auto 50px;
+    grid-template-columns:  1fr 1fr;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+}
+
+li {
+    border-right: 1px solid #000;
+    text-align: center;
+    color: #7a7a7a;
+    font-size: 20px;
+    cursor:pointer;
+}
+
+li:hover {
+    color: #3d8af7;
+}
+
+li:last-child {
+    border-right: none;
+}
+
+button{
+    border:none;
+    margin: 10px 5px;
+    cursor:pointer;
+    border-radius:4px;
+    background-color: #7a7a7a;
+    color: #fff;
+}
+button:hover {
+    background-color: #3d8af7;
+}
+
+#title {
+    text-align: center;
+    color: #3d8af7;
+    font-size: 20px;
+}
+
+#representative-image {
+    padding: 50px;
+    text-align: center;
+}
 #login-form {
-    background-color: aqua;
+    display: grid;
+    grid-template-columns: 400px 150px auto;
+}
+
+input {
+    padding:8px;
+    border:none;
+    border:1px solid #ccc;
+    margin: 10px 5px;
+}
+
+#login-intro {
+    grid-column: 1 / 2;
+    grid-row: 1;
+}
+
+#email {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+#password {
+    grid-column: 1;
+    grid-row: 3;
 }
 
 #login-button {
-    background-color: green;
-    color: blanchedalmond;
+    grid-column: 2;
+    grid-row: 3;
 }
 
-#main-page {
-    background-color: rebeccapurple;
-    display: none;
+#signup-intro {
+    grid-column: 1 / 2;
+    grid-row: 4;
+}
+
+#first-name {
+    grid-column: 1;
+    grid-row: 5;
+}
+
+#last-name {
+    grid-column: 1;
+    grid-row: 6;
+}
+
+#signup-button {
+    grid-column: 2;
+    grid-row: 6;
 }
