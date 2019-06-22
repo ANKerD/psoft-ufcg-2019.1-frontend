@@ -1,6 +1,7 @@
 let customHeaders = {
     'Content-Type': 'application/json'
 };
+
 const http = {
     addHeader: (header, content) => {
         customHeaders[header] = content;
@@ -10,12 +11,16 @@ const http = {
         delete this.customHeaders[header];
     },
 
-    fetch: (url, config) => {
-        let headers = config.headers || {};
-        headers = Object.assign({}, headers, customHeaders);
-        config.headers = headers
+    get: (url) => {
+        return fetch(url, {method: "GET", headers: customHeaders});
+    },
 
-        return fetch(url, config);
+    post: (url, body) => {
+        return fetch(url, {
+            method: "GET", 
+            headers: customHeaders, 
+            body: JSON.stringify(body)
+        });
     }
 };
 
