@@ -1,5 +1,5 @@
 import { AuthService } from "./services/login.js";
-import { http } from "./services/http.js";
+import { http } from "./utils/http.js";
 
 let $loginButton = document.querySelector('#login-button');
 let $signupButton = document.querySelector('#signup-button'); 

@@ -1,4 +1,4 @@
-import { api_endpoint, userToken } from '../../config.js'
+import { api_endpoint, userTokenPath } from '../../config.js'
 
 const AuthService = {
 
@@ -22,16 +22,16 @@ const AuthService = {
             if (response.ok) {
                 let res = (await response.json());
                 let token = res.token;
-                localStorage.setItem(userToken, token);
+                localStorage.setItem(userTokenPath, token);
                 return token;
             }
         });
     },
 
-    logout: async () => localStorage.removeItem(userToken),
+    logout: async () => localStorage.removeItem(userTokenPath),
 
     isLoggedIn: async () => new Promise(
-        resolve => resolve(!!localStorage.getItem(userToken))
+        resolve => resolve(!!localStorage.getItem(userTokenPath))
     )
              
 }

@@ -1,4 +1,4 @@
 const api_endpoint = 'http://localhost:8080';
-const userToken = "userToken";
+const userTokenPath = "userTokenPath";
 
-export { api_endpoint, userToken };
+export { api_endpoint, userTokenPath };
