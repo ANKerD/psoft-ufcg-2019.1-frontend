@@ -1,54 +1,39 @@
-class LoginService {
-    
-    // TODO: Implement using localStorage to save token.
-    
-    constructor() {
-        this.isLoggedIn = false;
-    }
+import { api_endpoint, userToken } from '../../config.js'
 
-    authenticate(email, password) {
-        console.log(email, password);
-        return fetch("http://localhost:8080/auth/login", {
+const AuthService = {
+
+    register: async (email, password, firstName, lastName) => {
+        let body = JSON.stringify({email, password, firstName, lastName});
+        return fetch(`${api_endpoint}/auth/register`, {
             method: "POST",
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({ "email": email,
-                    "password": password})});
-        /*
-        fetch('/auth/login').then(function(response) {
-            if(response.ok) {
-              response.blob().then(function(myBlob) {
-                var objectURL = URL.createObjectURL(myBlob);
-                myImage.src = objectURL;
-              });
-            } else {
-              console.log('Network response was not ok.');
+            body: body,
+            headers: {'Content-Type': 'application/json'}
+        });
+    },
+    
+    authenticate: async (email, password) => {
+        let body = JSON.stringify({email, password});
+        return fetch(`${api_endpoint}/auth/login`, {
+            method: "POST",
+            body: body,
+            headers: {'Content-Type': 'application/json'}
+        })
+        .then(async response => {
+            if (response.ok) {
+                let res = (await response.json());
+                let token = res.token;
+                localStorage.setItem(userToken, token);
+                return token;
             }
-          })
-          .catch(function(error) {
-            console.log('There has been a problem with your fetch operation: ' + error.message);
-          });
-        return new Promise((resolve, reject) => {
-            this.isLoggedIn = true;
-        });*/
-    }
-
-    isLoggedIn() {
-        return new Promise((resolve, reject) => {
-            resolve({
-                isLoggedIn: this.isLoggedIn
-            });
         });
-    }
+    },
 
-    getUserData() {
-        return new Promise((resolve, reject) => {
+    logout: async () => localStorage.removeItem(userToken),
 
-            resolve({
-                'firstName': 'Jon',
-                'email': 'aegon.targeryan@winterfell.com'
-            });
-        });
-    }
+    isLoggedIn: async () => new Promise(
+        resolve => resolve(!!localStorage.getItem(userToken))
+    )
+             
 }
 
-export { LoginService };
+export { AuthService };
