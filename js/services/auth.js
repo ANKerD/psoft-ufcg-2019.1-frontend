@@ -11,7 +11,7 @@ const AuthService = {
     
     authenticate: async (email, password) => {
         let body = JSON.stringify();
-        return http.post(`${api_endpoint}/auth/register`, {email, password}).then(async response => {
+        return http.post(`${api_endpoint}/auth/login`, {email, password}).then(async response => {
             if (response.ok) {
                 let res = (await response.json());
                 return res.token;

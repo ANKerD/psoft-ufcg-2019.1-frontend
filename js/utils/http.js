@@ -17,7 +17,7 @@ const http = {
 
     post: (url, body) => {
         return fetch(url, {
-            method: "GET", 
+            method: "POST", 
             headers: customHeaders, 
             body: JSON.stringify(body)
         });
