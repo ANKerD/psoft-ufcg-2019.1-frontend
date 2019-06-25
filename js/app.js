@@ -1,17 +1,34 @@
-import { AuthService } from "./services/login.js";
+import { AuthService } from "./services/auth.js";
+import { SubjectsService } from "./services/subjects.js";
 import { http } from "./utils/http.js";
 
-let $loginButton = document.querySelector('#login-button');
-let $signupButton = document.querySelector('#signup-button'); 
-let $emailInput = document.querySelector('#email');
-let $passwordInput = document.querySelector('#password');
+
 let $mainPage = document.querySelector('#main-page');
 
-$loginButton.onclick = async (event) => {
+loginButton.onclick = async (event) => {
     event.stopPropagation();
     event.preventDefault();
-    AuthService.authenticate(email.value, password.value).then( async (token) => {
+    AuthService.authenticate(emailInput.value, passwordInput.value).then( async (token) => {
         // Add the token to all further requests.
-        http.addHeader("Authorization", token);
+        console.log(token);
+        http.addHeader("Authorization", "Bearer " + token);
+    })
+}
+
+signupButton.onclick = async (event) => {
+    event.stopPropagation();
+    event.preventDefault();
+    AuthService.register(emailInput.value, passwordInput.value, firstNameInput.value, lastNameInput.value).then( async (token) => {
+        // Add the token to all further requests.
+        http.addHeader("Authorization", "Bearer " + token);
+    })
+}
+
+searchButton.onclick = async (event) => {
+    event.stopPropagation();
+    event.preventDefault();
+    SubjectsService.findBySubstring(searchInput.value).then( async (subjects) => {
+        // TODO: Criar os webcomponents disciplinas
+        console.log(subjects);
     })
 }

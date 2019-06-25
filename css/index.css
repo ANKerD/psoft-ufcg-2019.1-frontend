@@ -1,0 +1,55 @@
+body {
+    display: grid;
+    grid-template-rows: 50px auto 50px;
+    grid-template-columns:  1fr 1fr;
+}
+
+#representativeImage {
+    padding: 50px;
+    text-align: center;
+}
+
+#loginForm {
+    display: grid;
+    grid-template-columns: 400px 150px auto;
+}
+
+#loginIntro {
+    grid-column: 1 / 3;
+    grid-row: 1;
+}
+
+#emailInput {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+#passwordInput {
+    grid-column: 1;
+    grid-row: 3;
+}
+
+#loginButton {
+    grid-column: 2;
+    grid-row: 3;
+}
+
+#signupIntro {
+    grid-column: 1 / 3;
+    grid-row: 4;
+}
+
+#firstNameInput {
+    grid-column: 1;
+    grid-row: 5;
+}
+
+#lastNameInput {
+    grid-column: 1;
+    grid-row: 6;
+}
+
+#signupButton {
+    grid-column: 2;
+    grid-row: 6;
+}

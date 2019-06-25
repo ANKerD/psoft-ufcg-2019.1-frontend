@@ -1,8 +1,9 @@
 body {
     font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
-    display: grid;
-    grid-template-rows: 50px auto 50px;
-    grid-template-columns:  1fr 1fr;
+}
+
+a {
+    text-decoration: none;
 }
 
 ul {
@@ -17,12 +18,15 @@ ul {
 li {
     border-right: 1px solid #000;
     text-align: center;
-    color: #7a7a7a;
     font-size: 20px;
     cursor:pointer;
 }
 
-li:hover {
+li a {
+    color: #7a7a7a;
+}
+
+li:hover a {
     color: #3d8af7;
 }
 
@@ -48,58 +52,9 @@ button:hover {
     font-size: 20px;
 }
 
-#representative-image {
-    padding: 50px;
-    text-align: center;
-}
-#login-form {
-    display: grid;
-    grid-template-columns: 400px 150px auto;
-}
-
 input {
     padding:8px;
     border:none;
     border:1px solid #ccc;
     margin: 10px 5px;
-}
-
-#login-intro {
-    grid-column: 1 / 2;
-    grid-row: 1;
-}
-
-#email {
-    grid-column: 1;
-    grid-row: 2;
-}
-
-#password {
-    grid-column: 1;
-    grid-row: 3;
-}
-
-#login-button {
-    grid-column: 2;
-    grid-row: 3;
-}
-
-#signup-intro {
-    grid-column: 1 / 2;
-    grid-row: 4;
-}
-
-#first-name {
-    grid-column: 1;
-    grid-row: 5;
-}
-
-#last-name {
-    grid-column: 1;
-    grid-row: 6;
-}
-
-#signup-button {
-    grid-column: 2;
-    grid-row: 6;
 }
