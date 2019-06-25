@@ -5,16 +5,14 @@ class Subject extends HTMLElement{
     }
 
     connectedCallback() {
-        this.id = this.getAttribute('id');
-        this.name = this.getAttribute('name');
         this.render();
     }
 
     render() {
         this.$shadow.innerHTML = 
             `<link rel="stylesheet" href="css/subjectComp.css">
-             <h1>${this.id}</h1>
-             <h1>${this.name}</h1>`;
+             <h1>${this.getAttribute('id')}</h1>
+             <h1>${this.getAttribute('name')}</h1>`;
     }
 }
 
