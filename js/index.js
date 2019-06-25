@@ -16,8 +16,12 @@ loginButton.onclick = async (event) => {
 signupButton.onclick = async (event) => {
     event.stopPropagation();
     event.preventDefault();
+    console.log("registering");
     AuthService.register(emailInput.value, passwordInput.value, firstNameInput.value, lastNameInput.value).then( async (token) => {
+        console.log("registered");
         // Add the token to all further requests.
         http.addHeader("Authorization", "Bearer " + token);
     })
+    // TODO: redirect user after register
+    // TODO: prevent registering same email;
 }

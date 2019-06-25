@@ -1,4 +1,4 @@
-class SearchResult extends HTMLElement{
+class SearchResult extends HTMLElement {
 
     static get observedAttributes() {
         return ['subjects', 'start'];
@@ -43,10 +43,11 @@ class SearchResult extends HTMLElement{
             <button onclick="searchResult.prevResults()">Disciplinas anteriores</button>
             <div id="resultsList"><h1>Não existem disciplinas que atendem a sua busca</h1></div>
             <button onclick="searchResult.nextResults()">Próximas disciplinas</button>`;
-        if (JSON.parse(this.getAttribute('subjects')).length > 0) {
+        let subjects = JSON.parse(this.getAttribute('subjects') || '[]');
+        // console.log(subjects);
+        if (subjects.length > 0) {
             let resultsList = this.$shadow.querySelector('#resultsList');
             resultsList.innerHTML = "";
-            let subjects = JSON.parse(this.getAttribute('subjects'));
             for (let i = 0; i < subjects.length; i++) {
                 let start = Number(this.getAttribute('start'));
                 if (i >= start && i < start + 8) {

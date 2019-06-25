@@ -11,15 +11,21 @@ function fillSearchResult(result) {
     searchResult.setAttribute('subjects', JSON.stringify(subjects));
 }
 
-searchButton.onclick = async (event) => {
+
+const updateSubjects = async (event) => {
     if (event) {
         event.stopPropagation();
-        event.preventDefault();
+        if (event.type != 'keydown')
+            event.preventDefault();
     }
+    // TODO: loading message...
     SubjectsService.findBySubstring(searchInput.value).then( async (subjects) => {
         // TODO: Criar os webcomponents disciplinas
         fillSearchResult(subjects);
+        console.log(subjects);
     })
 }
 
+searchInput.onkeydown = updateSubjects;
+searchButton.onclick = updateSubjects;
 searchButton.onclick();
