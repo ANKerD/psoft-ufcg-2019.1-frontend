@@ -1,8 +1,6 @@
 import { AuthService } from "./services/auth.js";
 import { http } from "./utils/http.js";
 
-
-
 loginButton.onclick = async (event) => {
     event.stopPropagation();
     event.preventDefault();

@@ -1,6 +1,6 @@
 import { SubjectsService } from "./services/subjects.js";
-import './components/SearchResult.js';
-import './components/Subject.js';
+import '../components/SearchResult.js';
+import '../components/Subject.js';
 
 
 function fillSearchResult(result) {
@@ -14,13 +14,15 @@ function fillSearchResult(result) {
 
 const updateSubjects = async (event) => {
     if (event) {
-        event.stopPropagation();
-        if (event.type != 'keydown')
+        if (event.type == 'click') {
+            console.log("prevent");
+            event.stopPropagation();
             event.preventDefault();
+        }
     }
+    console.log(searchInput.value);
     // TODO: loading message...
     SubjectsService.findBySubstring(searchInput.value).then( async (subjects) => {
-        // TODO: Criar os webcomponents disciplinas
         fillSearchResult(subjects);
         console.log(subjects);
     })
