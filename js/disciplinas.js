@@ -6,7 +6,7 @@ import '../components/Subject.js';
 function fillSearchResult(result) {
     let subjects = [];
     result.forEach((subject) => {
-        subjects.push({id: subject.id, name: subject.nome});
+        subjects.push({id: subject.id, name: subject.name});
     });
     searchResult.setAttribute('subjects', JSON.stringify(subjects));
 }
