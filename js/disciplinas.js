@@ -3,7 +3,7 @@ import '../components/SearchResult.js';
 import '../components/Subject.js';
 
 
-function fillSearchResult(result) {
+const fillSearchResult = (result) => {
     let subjects = [];
     result.forEach((subject) => {
         subjects.push({id: subject.id, name: subject.name});
