@@ -12,8 +12,7 @@ class Subject extends HTMLElement{
         this.$shadow.innerHTML = 
             `<link rel="stylesheet" href="css/subjectComp.css">
             <a href="./perfil.html?id=${this.getAttribute('id')}">
-             <h1>${this.getAttribute('id')}</h1>
-             <h1>${this.getAttribute('name')}</h1>
+            <button id="subject">${this.getAttribute('id')} - ${this.getAttribute('name')}</button>
             </a>`;
     }
 }

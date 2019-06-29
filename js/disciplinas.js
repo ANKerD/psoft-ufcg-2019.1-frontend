@@ -28,6 +28,5 @@ const updateSubjects = async (event) => {
     })
 }
 
-searchInput.onkeydown = updateSubjects;
 searchButton.onclick = updateSubjects;
 searchButton.onclick();
