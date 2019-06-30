@@ -1,0 +1,57 @@
+body {
+    display: grid;
+    grid-template-rows: 50px repeat(4, auto) 50px;
+    grid-template-columns:  1fr 1fr;
+}
+
+#subjectName {
+    grid-column: 1 / 3;
+    grid-row: 2;
+    text-align: center;
+}
+
+#likeBox {
+    margin: auto;
+    grid-column: 1 / 3;
+    grid-row: 3;
+    font-size: 26px;
+}
+
+#commentBox {
+    margin: auto;
+    grid-column: 1 / 3;
+    grid-row: 4;
+    display: grid;
+    grid-template-columns: 750px 50px;
+    grid-template-rows: 50px 10px;
+}
+
+#commentIcon {
+    font-size: 26px;
+    cursor:pointer;
+    background-color: #ebebeb;
+    color: #3d8af7;
+    text-align: center;
+    line-height: 50px;
+}
+
+#commentInput {
+    font-size: 26px;
+}
+
+h5 {
+    margin: 0;
+    font-weight: normal;
+}
+
+#answertoName {
+    color: #3d8af7;
+}
+
+#removeAnswerToName, #likedIcon {
+    cursor:pointer;
+}
+
+#comments {
+    margin: auto;
+}
