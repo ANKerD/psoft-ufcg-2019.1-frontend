@@ -17,6 +17,9 @@ class Comment extends HTMLElement{
             <div id="commentContent">Nam ac leo eget neque bibendum facilisis. Duis tristique egestas maximus. Donec ut justo quis ex porttitor vulputate. Cras pulvinar diam et mi nullam.</div>
             </div>
             <div id="replyButtom">Responder</div>`;
+        this.$shadow.querySelector("#answerToName").onclick = async (event) => {
+            goToComment(2);
+        }
     }
 }
 
