@@ -28,21 +28,8 @@ const comment = (idParentComment) => {
     //Atualiza comentários
 }
 
-const goToComment = (id) => {
-    document.querySelector('#comment-'+id).scrollIntoView({ 
-        behavior: 'smooth'
-      });
-}
-
 for(let i = 0; i < 40; i++) {
     let newElem = document.createElement("comment-comp");
     newElem.setAttribute('id', "comment-"+i);
     comments.appendChild(newElem);
 }
-
-
-
-
-
-
-
