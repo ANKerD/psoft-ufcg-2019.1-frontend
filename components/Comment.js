@@ -20,7 +20,16 @@ class Comment extends HTMLElement{
             </div>
             <div id="replyButtom">Responder</div>`;
         this.$shadow.querySelector("#answerToName").onclick = async (event) => {
-            goToComment(2);
+            let clicking = new CustomEvent('goComment', {
+                detail: {
+                    targetComment: this.getAttribute('answerTo'),
+                    sourceComment: this.getAttribute('id'),
+                    // commentTarget: 10,
+                    // originTarget: 9,
+                }
+            })
+
+            window.dispatchEvent(clicking);
         }
     }
 }

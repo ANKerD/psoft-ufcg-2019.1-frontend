@@ -1,5 +1,5 @@
-const goToComment = (dom, id) => {
-    dom.querySelector('#comment-'+id).scrollIntoView({ 
+const goToComment = (id) => {
+    document.querySelector('#'+id).scrollIntoView({ 
         behavior: 'smooth'
       });
 }
