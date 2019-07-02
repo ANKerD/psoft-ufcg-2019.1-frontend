@@ -13,7 +13,7 @@ const goToCommentBox = () => {
 
 const goToTheBottom = () => {
     window.scrollBy({
-        top: document.body.scrollHeight+2000, 
+        top: document.body.offsetHeight,
         behavior: 'smooth'
     });
 }

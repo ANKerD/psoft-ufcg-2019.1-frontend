@@ -7,6 +7,10 @@ import { api_endpoint, userTokenPath } from '../config.js';
 //Redireciona usuários não logados
 if (!AuthService.isLoggedIn()) { window.location.href = "./"; }
 
+const token = localStorage.getItem(userTokenPath);
+
+http.addHeader("Authorization", "Bearer " + token);
+
 let profileData = null;
 let replyingComment = null;
 
