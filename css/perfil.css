@@ -49,11 +49,11 @@ h5 {
     font-weight: normal;
 }
 
-#answertoName {
+#replyToName {
     color: #3d8af7;
 }
 
-#removeAnswerToName, #likeBox {
+#removereplyToName, #likeBox {
     cursor:pointer;
 }
 

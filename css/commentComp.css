@@ -55,11 +55,11 @@
     color: #aaa;
 }
 
-#answerToName {
+#replyToName {
     color: #3d8af7;
 }
 
-#answerToName .itsMine {
+#replyToName .itsMine {
     color: #fff;
 }
 

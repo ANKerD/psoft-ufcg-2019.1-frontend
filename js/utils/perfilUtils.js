@@ -8,6 +8,7 @@ const goToCommentBox = () => {
     document.querySelector(`#commentBox`).scrollIntoView({ 
         behavior: 'smooth'
     });
+    document.querySelector(`#commentInput`).select();
 }
 
 export { goToComment, goToCommentBox }

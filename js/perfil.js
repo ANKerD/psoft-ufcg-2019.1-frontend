@@ -8,6 +8,7 @@ import { api_endpoint, userTokenPath } from '../config.js';
 if (!AuthService.isLoggedIn()) { window.location.href = "./"; }
 
 let profileData = null;
+let replyingComment = null;
 
 const fillProfile = () => {
     fillProfileName(profileData.name);
@@ -52,9 +53,23 @@ const toggleLike = () => {
     fillLikesBox(profileData.usersLiked, profileData.liked);
 }
 
-const postComment = (content) => {
+const refreshCommentBox = () => {
+    // if 
+};
+
+const postComment = (id) => {
     //Cria novo comentário (resposta ou não)
-    //Atualiza comentários
+    let content = commentInput.value;
+    if (!content) return;
+    
+    http.post(`${api_endpoint}/subjectsProfile/${id}/comment`, {
+        content: content,
+        answerTo: replyingComment
+    });
+
+    commentInput.value = '';
+    replyingComment = null;
+    refreshCommentBox();
 }
 
 const getCommentAuthor = id => {
@@ -67,9 +82,11 @@ const getCommentAuthor = id => {
 document.addEventListener('DOMContentLoaded', async ev => {
     const id = (new URL(window.location.href)).searchParams.get("id");
     
-    commentIcon.addEventListener('click', event => {
-        console.log(commentInput.value);
-        // postComment
+    commentIcon.addEventListener('click', () => postComment(id));
+    commentInput.addEventListener('keydown', event => {
+        if (event.key == 'Enter') {
+            postComment(id);
+        }
     });
 
     likeBox.addEventListener('click', toggleLike);
@@ -83,7 +100,13 @@ window.addEventListener('goComment', ev => {
     utils.goToComment(ev.detail.targetComment)
     console.log(ev.detail.targetComment);
     console.log(ev);
-})
+});
+
+window.addEventListener('selectCommentToReply', ev => {
+    utils.goToCommentBox()
+    console.log(ev.detail);
+    // console.log(ev);
+}); 
 
 const createCommentElement = (data) => {
     let newElem = document.createElement("comment-comp");

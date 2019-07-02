@@ -22,23 +22,32 @@ class Comment extends HTMLElement{
             </div>
             <div id="replyButtom">Responder</div>`;
 
-        this.$shadow.querySelector("#answerToName").addEventListener('click', async (event) => {
+        this.$shadow.querySelector("#replyToName").addEventListener('click', async (event) => {
             let gotoCommentEnvent = new CustomEvent('goComment', {
                 detail: {
-                    targetComment: this.attr('answer-id'),
-                    sourceComment: this.attr('id')
+                    targetComment: this.attr('answer-id')
                 }
             });
 
             window.dispatchEvent(gotoCommentEnvent);
         });
+
+        this.$shadow.querySelector("#replyButtom").addEventListener('click', async (event) => {
+            let gotoCommentEnvent = new CustomEvent('selectCommentToReply', {
+                detail: {
+                    commentId: this.attr('id')
+                }
+            });
+
+            window.dispatchEvent(gotoCommentEnvent);
+        })
     }
 
     __getAnswerToContent() {
         if (this.attr('answer-id') != null)
-            return `<div id="answerTo">Em resposta à <span id="answerToName">Anderson Dantas</span></div>`;
+            return `<div id="answerTo">Em resposta à <span id="replyToName">Anderson Dantas</span></div>`;
         else
-            return '<div id="answerTo" style="display:none;">Em resposta à <span id="answerToName"></span></div>'
+            return '<div id="answerTo" style="display:none;">Em resposta à <span id="replyToName"></span></div>'
     }
 }
 
