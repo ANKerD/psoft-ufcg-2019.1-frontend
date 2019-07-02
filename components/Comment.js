@@ -10,27 +10,35 @@ class Comment extends HTMLElement{
         this.render();
     }
 
+    attr(attribute){ return this.getAttribute(`data-${attribute}`); }
+
     render() {
         this.$shadow.innerHTML = 
             `<link rel="stylesheet" href="css/commentComp.css">
             <div id="commentBody">
-            <div id="author">João Marcos Lima</div>
-            <div id="answerTo">Em resposta à <span id="answerToName">Anderson Dantas</span></div>
-            <div id="commentContent">Nam ac leo eget neque bibendum facilisis. Duis tristique egestas maximus. Donec ut justo quis ex porttitor vulputate. Cras pulvinar diam et mi nullam.</div>
+            <div id="author">${this.attr('author')}</div>
+            ${this.__getAnswerToContent()}
+            <div id="commentContent">${this.attr('content')}</div>
             </div>
             <div id="replyButtom">Responder</div>`;
-        this.$shadow.querySelector("#answerToName").onclick = async (event) => {
-            let clicking = new CustomEvent('goComment', {
-                detail: {
-                    targetComment: this.getAttribute('answerTo'),
-                    sourceComment: this.getAttribute('id'),
-                    // commentTarget: 10,
-                    // originTarget: 9,
-                }
-            })
 
-            window.dispatchEvent(clicking);
-        }
+        this.$shadow.querySelector("#answerToName").addEventListener('click', async (event) => {
+            let gotoCommentEnvent = new CustomEvent('goComment', {
+                detail: {
+                    targetComment: this.attr('answer-id'),
+                    sourceComment: this.attr('id')
+                }
+            });
+
+            window.dispatchEvent(gotoCommentEnvent);
+        });
+    }
+
+    __getAnswerToContent() {
+        if (this.attr('answer-id') != null)
+            return `<div id="answerTo">Em resposta à <span id="answerToName">Anderson Dantas</span></div>`;
+        else
+            return '<div id="answerTo" style="display:none;">Em resposta à <span id="answerToName"></span></div>'
     }
 }
 

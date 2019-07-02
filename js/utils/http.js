@@ -11,11 +11,11 @@ const http = {
         delete this.customHeaders[header];
     },
 
-    get: (url) => {
+    get: async (url) => {
         return fetch(url, {method: "GET", headers: customHeaders});
     },
 
-    post: (url, body) => {
+    post: async (url, body) => {
         return fetch(url, {
             method: "POST", 
             headers: customHeaders, 
