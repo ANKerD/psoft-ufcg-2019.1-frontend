@@ -31,6 +31,9 @@ const fillLikesBox = (count, liked) => {
 
 const fillComments = (comments) => {
     const $comments = document.querySelector('#comments');
+    while ($comments.firstChild) {
+        $comments.removeChild($comments.firstChild);
+    }
     comments.forEach(comment => {
         const element = createCommentElement(comment);
         $comments.append(element);
@@ -53,16 +56,20 @@ const toggleLike = () => {
     fillLikesBox(profileData.usersLiked, profileData.liked);
 }
 
+const getCommentById = id => {
+    return profileData.comments.find(
+        comment => comment.id == id
+    );
+}
+
 const setReplying = reply => {
-    console.log("haaa");
     replyingComment = reply;
-    console.log()
     if (reply == null) {
         replyToBox.classList.remove('show');
     } else {
+        const comment = getCommentById(reply);
         replyToBox.classList.add('show');
-        replyToName.value = reply;
-        removereplyToName.addEventListener('click', () => setReplying(null));
+        replyToName.innerHTML = comment.authorName;
     }
 };
 
@@ -77,28 +84,24 @@ const postComment = async (id) => {
     })
     .then(res => res.json());
 
-    console.log(ret);
-    
     commentInput.value = '';
     setReplying(null);
+    
     profileData.comments.push(ret);
+    
     fillComments(profileData.comments);
-    console.log(utils.goToTheBottom);
     utils.goToTheBottom();
 }
 
 const getCommentAuthor = id => {
-    let comment = profileData.comments.find(
-        comment => comment.id == id
-    );
+    let comment = getCommentById(id);
     return comment ? comment.authorName : '';
 }
 
 document.addEventListener('DOMContentLoaded', async ev => {
     const id = (new URL(window.location.href)).searchParams.get("id");
     
-    setReplying(null);
-    
+    removereplyToName.addEventListener('click', () => setReplying(null));   
     commentIcon.addEventListener('click', () => postComment(id));
     commentInput.addEventListener('keydown', event => {
         if (event.key == 'Enter') {

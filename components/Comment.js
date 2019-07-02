@@ -45,7 +45,7 @@ class Comment extends HTMLElement{
 
     __getAnswerToContent() {
         if (this.attr('answer-id') != null)
-            return `<div id="answerTo">Em resposta à <span id="replyToName">Anderson Dantas</span></div>`;
+            return `<div id="answerTo">Em resposta à <span id="replyToName">${this.attr('answer-author')}</span></div>`;
         else
             return '<div id="answerTo" style="display:none;">Em resposta à <span id="replyToName"></span></div>'
     }

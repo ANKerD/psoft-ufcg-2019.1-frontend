@@ -56,7 +56,7 @@ h5 {
 #replyToBox {
     visibility: hidden;
     opacity: 0;
-    transition: visibility 0.1s, opacity 0.2s ease-in-out;
+    transition: visibility 0.2s, opacity 0.2s ease-in-out;
 }
 
 #replyToBox.show {
