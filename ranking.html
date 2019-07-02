@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UCDb - classificação e review de cursos</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/ranking.css" type="text/css">
+</head>
+<body>
+    <div id="title">UFCG Cursos Database</div>
+    <div id="navbar">
+        <ul>
+            <li><a href="./disciplinas.html">Disciplinas</a></li>
+            <li><a href="./index.html">Login</a></li>
+        </ul>
+    </div>
+    <h1 id="subjectName">Ranking de disciplinas</h1>
+
+    <div id="rankTypeBox">
+        <div>
+            Ordenar por 
+            <select name="type">
+                <option value="likes">Likes</option>
+                <option value="comments">Comentários</option>
+                <option value="commentsPlusLikes">Likes + Comentários</option>
+            </select>
+            em ordem
+            <select name="desc">
+                <option value="true">Decrescente</option>
+                <option value="false">Crescente</option>
+            </select>
+        </div>
+        <div id="commentIcon">&#10148;</div>
+    </div>
+
+    <div id="subjects">
+        
+    </div>
+    
+    <div id="footer"></div>
+    <script type="module" src="js/ranking.js"></script>
+</body>
+</html>
