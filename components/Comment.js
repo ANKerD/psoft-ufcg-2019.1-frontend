@@ -56,10 +56,7 @@ class Comment extends HTMLElement{
     }
 
     getContent() {
-        let ret = this.attr('content') || '<span class="delete">Este comentáro foi removido pelo autor</span>';
-        console.log(this.attr('active'), ret);
-        return ret;
-            // return 
+        return this.attr('content') || '<span class="delete">Este comentáro foi removido pelo autor</span>';
     }
 
     getAnswerToContent() {

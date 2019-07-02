@@ -19,8 +19,10 @@ const updateSubjects = async (event) => {
             event.stopPropagation();
             event.preventDefault();
         }
+
+        if (event.type == 'keydown' && event.key != 'Enter') 
+            return;
     }
-    console.log(searchInput.value);
     // TODO: loading message...
     SubjectsService.findBySubstring(searchInput.value).then( async (subjects) => {
         fillSearchResult(subjects);
@@ -28,5 +30,6 @@ const updateSubjects = async (event) => {
     })
 }
 
+searchInput.addEventListener('keydown', updateSubjects);
 searchButton.onclick = updateSubjects;
 searchButton.onclick();
