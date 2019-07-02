@@ -11,4 +11,11 @@ const goToCommentBox = () => {
     document.querySelector(`#commentInput`).select();
 }
 
-export { goToComment, goToCommentBox }
+const goToTheBottom = () => {
+    window.scrollBy({
+        top: document.body.scrollHeight+2000, 
+        behavior: 'smooth'
+    });
+}
+
+export { goToComment, goToCommentBox, goToTheBottom }

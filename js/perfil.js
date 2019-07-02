@@ -53,23 +53,38 @@ const toggleLike = () => {
     fillLikesBox(profileData.usersLiked, profileData.liked);
 }
 
-const refreshCommentBox = () => {
-    // if 
+const setReplying = reply => {
+    console.log("haaa");
+    replyingComment = reply;
+    console.log()
+    if (reply == null) {
+        replyToBox.classList.remove('show');
+    } else {
+        replyToBox.classList.add('show');
+        replyToName.value = reply;
+        removereplyToName.addEventListener('click', () => setReplying(null));
+    }
 };
 
-const postComment = (id) => {
+const postComment = async (id) => {
     //Cria novo comentário (resposta ou não)
     let content = commentInput.value;
     if (!content) return;
     
-    http.post(`${api_endpoint}/subjectsProfile/${id}/comment`, {
+    let ret = await http.post(`${api_endpoint}/subjectsProfile/${id}/comment`, {
         content: content,
         answerTo: replyingComment
-    });
+    })
+    .then(res => res.json());
 
+    console.log(ret);
+    
     commentInput.value = '';
-    replyingComment = null;
-    refreshCommentBox();
+    setReplying(null);
+    profileData.comments.push(ret);
+    fillComments(profileData.comments);
+    console.log(utils.goToTheBottom);
+    utils.goToTheBottom();
 }
 
 const getCommentAuthor = id => {
@@ -81,6 +96,8 @@ const getCommentAuthor = id => {
 
 document.addEventListener('DOMContentLoaded', async ev => {
     const id = (new URL(window.location.href)).searchParams.get("id");
+    
+    setReplying(null);
     
     commentIcon.addEventListener('click', () => postComment(id));
     commentInput.addEventListener('keydown', event => {
@@ -98,14 +115,11 @@ document.addEventListener('DOMContentLoaded', async ev => {
 
 window.addEventListener('goComment', ev => {
     utils.goToComment(ev.detail.targetComment)
-    console.log(ev.detail.targetComment);
-    console.log(ev);
 });
 
 window.addEventListener('selectCommentToReply', ev => {
-    utils.goToCommentBox()
-    console.log(ev.detail);
-    // console.log(ev);
+    utils.goToCommentBox();
+    setReplying(ev.detail.commentId);
 }); 
 
 const createCommentElement = (data) => {
