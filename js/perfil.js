@@ -102,6 +102,18 @@ const getCommentAuthor = id => {
     return comment ? comment.authorName : '';
 }
 
+const deleteComment = async commentId => {
+    const profileId = profileData.id;
+    await http.delete(`${api_endpoint}/subjectsProfile/${profileId}/comment/${commentId}`);
+    profileData.comments.forEach(element => {
+        if (element.id == commentId) {
+            element.content = '';
+            element.active = false;
+        }
+    });
+    fillComments(profileData.comments);
+}
+
 document.addEventListener('DOMContentLoaded', async ev => {
     const id = (new URL(window.location.href)).searchParams.get("id");
     
@@ -129,6 +141,10 @@ window.addEventListener('selectCommentToReply', ev => {
     setReplying(ev.detail.commentId);
 }); 
 
+window.addEventListener('deleteComment', ev => {
+    deleteComment(event.detail.commentId);
+}); 
+
 const createCommentElement = (data) => {
     let newElem = document.createElement("comment-comp");
     newElem.setAttribute('id', `comment-${data.id}`);
@@ -136,11 +152,15 @@ const createCommentElement = (data) => {
     newElem.setAttribute('data-content', data.content);
     newElem.setAttribute('data-active', data.active);
     newElem.setAttribute('data-author', data.authorName);
+
+    data.itsMine && newElem.classList.add('itsMine');
+    !data.active && newElem.classList.add('deleted');
     
     if (data.answerTo != null) {
         let authorAnswer = getCommentAuthor(data.answerTo)
         newElem.setAttribute('data-answer-id', data.answerTo);
         newElem.setAttribute('data-answer-author', authorAnswer);
     }
+
     return newElem;
 }

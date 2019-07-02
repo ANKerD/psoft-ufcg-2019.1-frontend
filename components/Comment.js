@@ -17,33 +17,52 @@ class Comment extends HTMLElement{
             `<link rel="stylesheet" href="css/commentComp.css">
             <div id="commentBody">
             <div id="author">${this.attr('author')}</div>
-            ${this.__getAnswerToContent()}
-            <div id="commentContent">${this.attr('content')}</div>
+            ${this.getAnswerToContent()}
+            <div id="commentContent">${this.getContent()}</div>
             </div>
-            <div id="replyButtom">Responder</div>`;
+            <div id="replyButtom">Responder</div>
+            <div id="deleteButton">Remover</div>`;
+            
 
         this.$shadow.querySelector("#replyToName").addEventListener('click', async (event) => {
-            let gotoCommentEnvent = new CustomEvent('goComment', {
+            let gotoCommentEvent = new CustomEvent('goComment', {
                 detail: {
                     targetComment: this.attr('answer-id')
                 }
             });
 
-            window.dispatchEvent(gotoCommentEnvent);
+            window.dispatchEvent(gotoCommentEvent);
         });
 
-        this.$shadow.querySelector("#replyButtom").addEventListener('click', async (event) => {
-            let gotoCommentEnvent = new CustomEvent('selectCommentToReply', {
+        this.attr('active') && this.$shadow.querySelector("#replyButtom").addEventListener('click', async (event) => {
+            let gotoCommentBox = new CustomEvent('selectCommentToReply', {
                 detail: {
                     commentId: this.attr('id')
                 }
             });
 
-            window.dispatchEvent(gotoCommentEnvent);
+            window.dispatchEvent(gotoCommentBox);
         })
+
+        this.$shadow.querySelector("#deleteButton").addEventListener('click', async (event) => {
+            let deleteComment = new CustomEvent('deleteComment', {
+                detail: {
+                    commentId: this.attr('id')
+                }
+            });
+
+            window.dispatchEvent(deleteComment);
+        });
     }
 
-    __getAnswerToContent() {
+    getContent() {
+        let ret = this.attr('content') || '<span class="delete">Este comentáro foi removido pelo autor</span>';
+        console.log(this.attr('active'), ret);
+        return ret;
+            // return 
+    }
+
+    getAnswerToContent() {
         if (this.attr('answer-id') != null)
             return `<div id="answerTo">Em resposta à <span id="replyToName">${this.attr('answer-author')}</span></div>`;
         else
