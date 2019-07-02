@@ -12,10 +12,17 @@ const http = {
     },
 
     get: async (url) => {
+        console.log(`GET ${url}`);
         return fetch(url, {method: "GET", headers: customHeaders});
     },
 
+    delete: async (url) => {
+        console.log(`DELETE ${url}`);
+        return fetch(url, {method: "DELETE", headers: customHeaders});
+    },
+
     post: async (url, body) => {
+        console.log(`POST ${url}`);
         return fetch(url, {
             method: "POST", 
             headers: customHeaders, 

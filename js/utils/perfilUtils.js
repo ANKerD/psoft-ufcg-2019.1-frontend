@@ -1,7 +1,13 @@
-const goToComment = (id) => {
+const goToComment = id => {
     document.querySelector(`#comment-${id}`).scrollIntoView({ 
         behavior: 'smooth'
     });
 }
 
-export { goToComment }
+const goToCommentBox = () => {
+    document.querySelector(`#commentBox`).scrollIntoView({ 
+        behavior: 'smooth'
+    });
+}
+
+export { goToComment, goToCommentBox }

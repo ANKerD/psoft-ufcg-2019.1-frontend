@@ -22,9 +22,10 @@ const fillProfileName = name => {
 const fillLikesBox = (count, liked) => {
     numberOfLikes.innerHTML = count;
 
-    if (liked) {
+    if (liked) 
         likeBox.classList.add('liked');
-    }
+    else 
+        likeBox.classList.remove('liked');
 }
 
 const fillComments = (comments) => {
@@ -36,8 +37,19 @@ const fillComments = (comments) => {
 }
 
 const toggleLike = () => {
-    //Manda like para o back
-    //Atualiza contagem de likes
+    const id = profileData.id;
+    const likeEndpoint = `${api_endpoint}/subjectsProfile/${id}/like`;
+    
+    if (profileData.liked) {
+        http.delete(likeEndpoint);
+        --profileData.usersLiked;
+    } else {
+        http.post(likeEndpoint);
+        ++profileData.usersLiked;
+    }
+    
+    profileData.liked = !profileData.liked;
+    fillLikesBox(profileData.usersLiked, profileData.liked);
 }
 
 const postComment = (content) => {
@@ -53,12 +65,15 @@ const getCommentAuthor = id => {
 }
 
 document.addEventListener('DOMContentLoaded', async ev => {
-    let id = (new URL(window.location.href)).searchParams.get("id");
+    const id = (new URL(window.location.href)).searchParams.get("id");
     
     commentIcon.addEventListener('click', event => {
-        console.log(event);
+        console.log(commentInput.value);
         // postComment
     });
+
+    likeBox.addEventListener('click', toggleLike);
+
     let res = await http.get(`${api_endpoint}/subjectsProfile/${id}`);
     profileData = await res.json();
     fillProfile();
@@ -69,7 +84,6 @@ window.addEventListener('goComment', ev => {
     console.log(ev.detail.targetComment);
     console.log(ev);
 })
-
 
 const createCommentElement = (data) => {
     let newElem = document.createElement("comment-comp");
