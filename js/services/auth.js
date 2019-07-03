@@ -8,8 +8,6 @@ const AuthService = {
             if (response.ok) {
                 let res = (await response.json());
                 localStorage.setItem(userTokenPath, res.token);
-                // Add the token to all further requests.
-                http.addHeader("Authorization", "Bearer " + res.token);
                 return res.token;
             }
         });
@@ -20,8 +18,6 @@ const AuthService = {
             if (response.ok) {
                 let res = (await response.json());
                 localStorage.setItem(userTokenPath, res.token);
-                // Add the token to all further requests.
-                http.addHeader("Authorization", "Bearer " + res.token);
                 return res.token;
             }
         });
@@ -30,6 +26,7 @@ const AuthService = {
     logout: () => {
         localStorage.removeItem(userTokenPath);
         http.removeHeader("Authorization");
+        window.location.href = "./index.html";
     },
 
     parseJwt: (token) => {

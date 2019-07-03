@@ -8,7 +8,7 @@ const http = {
     },
 
     removeHeader: (header) => {
-        delete this.customHeaders[header];
+        delete customHeaders[header];
     },
 
     get: async (url) => {

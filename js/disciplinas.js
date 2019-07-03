@@ -1,6 +1,16 @@
 import { SubjectsService } from "./services/subjects.js";
+import { AuthService } from "./services/auth.js";
 import '../components/SearchResult.js';
 import '../components/Subject.js';
+
+if (AuthService.isLoggedIn()) {
+    loginLogoutButton.onclick = AuthService.logout;
+    loginLogoutButton.innerHTML = "Logout";
+} else {
+    loginLogoutButton.onclick = () => {
+        window.location.href = "./index.html";
+    }
+}
 
 
 const fillSearchResult = (result) => {

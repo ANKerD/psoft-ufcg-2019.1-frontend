@@ -164,3 +164,5 @@ const createCommentElement = (data) => {
 
     return newElem;
 }
+
+loginLogoutButton.onclick = AuthService.logout;
