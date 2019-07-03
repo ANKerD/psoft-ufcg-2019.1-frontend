@@ -4,8 +4,10 @@ import '../components/SearchResult.js';
 import '../components/Subject.js';
 
 if (AuthService.isLoggedIn()) {
-    loginLogoutButton.onclick = AuthService.logout;
+    document.querySelector("#navbarList").innerHTML += 
+    `<li><a href="./ranking.html">Ranking</a></li>`;
     loginLogoutButton.innerHTML = "Logout";
+    loginLogoutButton.onclick = AuthService.logout;
 } else {
     loginLogoutButton.onclick = () => {
         window.location.href = "./index.html";

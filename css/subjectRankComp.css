@@ -1,0 +1,19 @@
+:host {
+    display: grid;
+    margin: 15px 0;
+    grid-template-rows: auto 45px;
+    grid-template-columns: 800px;
+}
+
+#subjectBody {
+    text-align: center;
+    background-color: #ebebeb;
+    color: #3d8af7;
+    border-radius: 5px 5px 0 5px;
+    padding: 10px;
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none;
+}

@@ -13,6 +13,8 @@ const token = localStorage.getItem(userTokenPath);
 
 http.addHeader("Authorization", "Bearer " + token);
 
+loginLogoutButton.onclick = AuthService.logout;
+
 const fillResult = (result) => {
     let subjects = document.querySelector("#subjects");
     subjects.innerHTML = "";
