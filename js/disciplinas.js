@@ -26,7 +26,6 @@ const updateSubjects = async (event) => {
     // TODO: loading message...
     SubjectsService.findBySubstring(searchInput.value).then( async (subjects) => {
         fillSearchResult(subjects);
-        console.log(subjects);
     })
 }
 

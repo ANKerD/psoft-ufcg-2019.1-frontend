@@ -10,6 +10,15 @@ const SubjectsService = {
                 return res;
             }
         });
+    },
+
+    findOrdered: async (type, descending) => {
+        return http.get(`${api_endpoint}/subjects/ranking?type=${type}&desc=${descending}`).then(async response => {
+            if (response.ok) {
+                let res = (await response.json());
+                return res;
+            }
+        });
     }
 }
 
