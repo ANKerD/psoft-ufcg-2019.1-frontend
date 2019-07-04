@@ -1,7 +1,7 @@
 import { AuthService } from "./services/auth.js";
+import { SubjectsService } from "./services/subjects.js";
 import { http } from "./utils/http.js";
 import { userTokenPath } from '../config.js';
-import { searchSubjects } from './utils/perfilUtils.js';
 import '../components/Comment.js';
 
 import  '../components/SubjectOnRanking.js';
@@ -28,7 +28,22 @@ const fillResult = (result) => {
     });
 }
 
-const updateSubjects = event => searchSubjects(event, fillResult);
+const updateSubjects = async (event) => {
+    if (event) {
+        if (event.type == 'click') {
+            console.log("prevent");
+            event.stopPropagation();
+            event.preventDefault();
+        }
+
+        if (event.type == 'keydown' && event.key != 'Enter') 
+            return;
+    }
+    // TODO: loading message...
+    SubjectsService.findOrdered(type.value, desc.value).then( async (subjects) => {
+        fillResult(subjects);
+    })
+}
 
 commentIcon.onclick = updateSubjects;
 commentIcon.onclick();
