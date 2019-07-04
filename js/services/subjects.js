@@ -1,4 +1,4 @@
-import { api_endpoint, userTokenPath } from '../../config.js'
+import { api_endpoint } from '../../config.js'
 import { http } from '../utils/http.js'
 
 const SubjectsService = {

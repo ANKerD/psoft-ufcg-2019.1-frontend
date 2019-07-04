@@ -1,5 +1,6 @@
 import { SubjectsService } from "./services/subjects.js";
 import { AuthService } from "./services/auth.js";
+import { searchSubjects } from './utils/perfilUtils.js';
 import '../components/SearchResult.js';
 import '../components/Subject.js';
 
@@ -24,22 +25,7 @@ const fillSearchResult = (result) => {
 }
 
 
-const updateSubjects = async (event) => {
-    if (event) {
-        if (event.type == 'click') {
-            console.log("prevent");
-            event.stopPropagation();
-            event.preventDefault();
-        }
-
-        if (event.type == 'keydown' && event.key != 'Enter') 
-            return;
-    }
-    // TODO: loading message...
-    SubjectsService.findBySubstring(searchInput.value).then( async (subjects) => {
-        fillSearchResult(subjects);
-    })
-}
+const updateSubjects = event => searchSubjects(event, fillSearchResult);
 
 searchInput.addEventListener('keydown', updateSubjects);
 searchButton.onclick = updateSubjects;
