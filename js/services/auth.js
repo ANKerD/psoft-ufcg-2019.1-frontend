@@ -8,8 +8,8 @@ const AuthService = {
             if (response.ok) {
                 let res = (await response.json());
                 localStorage.setItem(userTokenPath, res.token);
-                return res.token;
             }
+            return response;
         });
     },
     
@@ -18,8 +18,8 @@ const AuthService = {
             if (response.ok) {
                 let res = (await response.json());
                 localStorage.setItem(userTokenPath, res.token);
-                return res.token;
-            }
+            } 
+            return response;
         });
     },
 

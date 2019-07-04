@@ -8,19 +8,27 @@ const redirect = () => {
     }
 };
 
+const handleLogin = async res => {
+    if (res.ok) {
+        redirect();
+    } else {
+        let body = await res.json();
+        let errorMsg = body.message;
+        window.alert(errorMsg);
+    }
+};
+
 loginButton.onclick = async (event) => {
     event.stopPropagation();
     event.preventDefault();
-    await AuthService.authenticate(emailInput.value, passwordInput.value);
-    redirect();
+    AuthService.authenticate(emailInput.value, passwordInput.value)
+    .then(handleLogin);
 }
 
 signupButton.onclick = async (event) => {
     event.stopPropagation();
     event.preventDefault();
     console.log("registering");
-    await AuthService.register(emailInput.value, passwordInput.value, firstNameInput.value, lastNameInput.value);
-    redirect()
-    // TODO: redirect user after register
-    // TODO: prevent registering same email;
+    AuthService.register(emailInput.value, passwordInput.value, firstNameInput.value, lastNameInput.value)
+    .then(handleLogin);
 }

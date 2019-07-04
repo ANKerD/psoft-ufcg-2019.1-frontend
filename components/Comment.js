@@ -1,5 +1,3 @@
-// import 
-
 class Comment extends HTMLElement{
     constructor() {
         super();
