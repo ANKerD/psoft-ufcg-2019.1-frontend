@@ -16,3 +16,8 @@ A implemetação desse frontend segue um híbrido de MVC com CBA.
 - components: Nela estão implementaos alguns componentes auto-contidos.
 - js: o coraão da aplicação, toda a parte comportamental das páginas, bem como interaão com API e (re)-renderizaão são cuidados pelos arquivos a raíz dessa pasta. as sub-pastas services e utils contam com alguns utilitários usados nesses ecripts principais;
 - css: aqui estão todas as folhas de estilo usadas na aplicaão, tanto pelos componentes individualmente, quanto da estilizaão das páginas.
+
+###### Como iniciar:
+
+1. Edite o arquivo config.js mudando a constante api_endpoint para o endpoint do backend associado ao projeto. 
+2. Sirva a pasta raiz com algum servidor web, ex: "python -m SimpleHTTPServer 8080"
